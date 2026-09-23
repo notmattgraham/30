@@ -440,6 +440,46 @@
   .rules-cta { text-align: center; margin-top: 40px; }
   .rules-cta .hero-micro { margin-top: 12px; }
 
+  /* ── COACHES ── */
+  .coach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) { .coach-grid { grid-template-columns: 1fr; max-width: 320px; gap: 40px; } }
+  .coach-card { text-align: center; }
+  .coach-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 18px;
+    border: 4px solid var(--white);
+    box-shadow: 0 14px 30px rgba(7,16,49,0.16);
+  }
+  .coach-name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .coach-stats { list-style: none; display: inline-block; text-align: left; }
+  .coach-stats li {
+    font-family: var(--body);
+    font-size: 14px;
+    color: var(--ink-muted);
+    padding: 4px 0;
+    display: flex;
+    gap: 8px;
+  }
+  .coach-stats li::before { content: '—'; color: var(--ink-faint); flex-shrink: 0; }
+  .coach-stats li strong { color: var(--ink); font-weight: 700; }
+
   /* ── VALUE STACK ── */
   .value-grid {
     display: grid;
@@ -703,6 +743,42 @@
       <div class="rules-cta">
         <a href="https://daily-post-challenge.circle.so/checkout/30-day-posting-challenge" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
         <span class="hero-micro">Limited to 100 spots per cohort</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COACHES ── -->
+  <section>
+    <div class="container">
+      <div class="section-label">Your Coaches</div>
+      <h2>Meet your coaches</h2>
+      <p class="section-sub">People who've actually done it — not just talked about it.</p>
+      <div class="coach-grid">
+        <div class="coach-card">
+          <img class="coach-photo" src="images/coach-matt.jpg" alt="Matt">
+          <div class="coach-name">Matt</div>
+          <ul class="coach-stats">
+            <li><strong>1.1M</strong> followers</li>
+            <li><strong>1.5B</strong> views</li>
+            <li><strong>18 years</strong> of content experience</li>
+          </ul>
+        </div>
+        <div class="coach-card">
+          <img class="coach-photo" src="images/coach-justyn.jpg" alt="Justyn">
+          <div class="coach-name">Justyn</div>
+          <ul class="coach-stats">
+            <li><strong>250K</strong> followers</li>
+            <li><strong>500+</strong> days in a row of posting</li>
+          </ul>
+        </div>
+        <div class="coach-card">
+          <img class="coach-photo" src="images/coach-joe.jpg" alt="Joe">
+          <div class="coach-name">Joe</div>
+          <ul class="coach-stats">
+            <li><strong>75K</strong> followers</li>
+            <li><strong>0 to 11K</strong> followers in 30 days</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
