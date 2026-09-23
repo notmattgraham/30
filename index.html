@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The $100 Daily Post Challenge</title>
+<meta name="description" content="Post every day for 30 days and get 110% of your money back. Limited to 100 people. Begins September 15, 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #ffffff;
+    --bg-alt:    #eef0fb;
+    --bg-card:   #f6f7fc;
+    --ink:       #071031;
+    --ink-soft:  #2c3252;
+    --ink-muted: #5b6178;
+    --ink-faint: #9298b0;
+    --hairline:  #e3e6f3;
+    --accent:    #063cff;
+    --accent-dark: #041f8a;
+    --white:     #ffffff;
+
+    --display: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    --body:    'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  }
+
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink-soft);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ── OFFER BAR ── */
+  .offer-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--ink);
+    color: var(--white);
+    padding: 10px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    font-family: var(--display);
+  }
+  .offer-bar .offer-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffd166;
+  }
+  .offer-bar .offer-copy { font-size: 13px; font-weight: 500; color: var(--white); opacity: 0.85; }
+  .offer-bar .offer-countdown {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    background: rgba(255,255,255,0.12);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  @media (max-width: 640px) {
+    .offer-bar { padding: 9px 12px; }
+    .offer-bar .offer-copy { display: none; }
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── HERO ── */
+  .hero { padding: 56px 0 8px; text-align: center; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 26px;
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    width: 26px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(34px, 5.6vw, 58px);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    max-width: 780px;
+    margin: 0 auto 18px;
+  }
+  h1 .accent-underline {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 6px;
+  }
+  .lead {
+    font-family: var(--body);
+    font-size: clamp(16px, 1.7vw, 19px);
+    line-height: 1.6;
+    color: var(--ink-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .lead strong { color: var(--ink); font-weight: 600; }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 30px;
+    background: var(--accent);
+    color: var(--white);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    padding: 16px 30px;
+    border-radius: 999px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(6,60,255,0.28);
+  }
+  .hero-cta:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(6,60,255,0.34); }
+  .hero-cta .arrow { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+  .hero-cta:hover .arrow { transform: translateX(3px); }
+
+  .hero-micro {
+    display: block;
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* ── VSL ── */
+  .vsl-wrap { max-width: 760px; margin: 32px auto; }
+  .vsl-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #050b24;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(7,16,49,0.22);
+  }
+  .vsl-frame video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: #050b24;
+  }
+  /* ── SECTIONS ── */
+  section { padding: 72px 0; }
+  section.alt { background: var(--bg-alt); }
+  .section-label {
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4.2vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    line-height: 1.1;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 16px;
+  }
+  .section-sub {
+    font-family: var(--body);
+    font-size: clamp(15px, 1.5vw, 17px);
+    color: var(--ink-muted);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 44px;
+  }
+
+  /* ── COHORT PROOF ── */
+  .cohort-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) { .cohort-grid { grid-template-columns: 1fr 1fr; max-width: 640px; } }
+  @media (max-width: 480px) { .cohort-grid { grid-template-columns: 1fr; max-width: 340px; } }
+  .cohort-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 14px 30px rgba(7,16,49,0.06);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    border: 1px solid var(--hairline);
+    padding: 0;
+  }
+  .cohort-card:hover, .cohort-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 36px rgba(7,16,49,0.12);
+    outline: none;
+  }
+  .cohort-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background: var(--ink);
+    display: block;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .cohort-card-body { padding: 16px 18px; }
+  .cohort-card-name {
+    font-family: var(--display);
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .cohort-card-stat {
+    font-family: var(--body);
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+  .cohort-card-stat strong { color: var(--accent); font-weight: 700; }
+  .cohort-card-more {
+    font-family: var(--display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 10px;
+  }
+
+  /* ── STORY MODAL ── */
+  .story-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0s linear 0.28s;
+  }
+  .story-modal.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.28s ease, visibility 0s linear 0s;
+  }
+  .story-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(7,16,49,0.72);
+  }
+  .story-modal-panel {
+    position: relative;
+    background: var(--white);
+    border-radius: 18px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+    transform: translateY(28px) scale(0.98);
+    opacity: 0;
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.26s ease;
+  }
+  .story-modal.open .story-modal-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  .story-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(7,16,49,0.85);
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .story-modal-images {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    background: var(--ink);
+  }
+  .story-modal-images img {
+    flex: none;
+    width: 100%;
+    scroll-snap-align: start;
+    max-height: 380px;
+    object-fit: contain;
+    display: block;
+  }
+  .story-modal-body { padding: 26px 28px 30px; }
+  .story-modal-name {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .story-modal-role {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-top: 3px;
+    margin-bottom: 16px;
+  }
+  .story-modal-text {
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  /* ── RULES ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) { .rules-grid { grid-template-columns: 1fr; } }
+  .rule-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: left;
+  }
+  .rule-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--white);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .rule-name {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .rule-desc { font-family: var(--body); font-size: 14.5px; color: var(--ink-muted); }
+
+  .rules-cta { text-align: center; margin-top: 40px; }
+  .rules-cta .hero-micro { margin-top: 12px; }
+
+  /* ── VALUE STACK ── */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 960px;
+    margin: 0 auto 8px;
+  }
+  @media (max-width: 900px) { .value-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .value-grid { grid-template-columns: 1fr; } }
+  .value-card {
+    background: var(--bg-card);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .value-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(6,60,255,0.1);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .value-name {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .value-tag {
+    font-family: var(--display);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 4px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .value-desc { font-family: var(--body); font-size: 14px; color: var(--ink-muted); line-height: 1.55; }
+
+  .value-total {
+    max-width: 560px;
+    margin: 36px auto 0;
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 26px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .value-total-label {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+  .value-total-amount {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .value-total-strike { text-decoration: line-through; opacity: 0.5; font-weight: 500; font-size: 18px; margin-right: 8px; }
+
+  /* ── GUARANTEE ── */
+  .guarantee {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 44px 36px;
+    text-align: center;
+    box-shadow: 0 20px 44px rgba(7,16,49,0.07);
+  }
+  .guarantee-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(10,157,90,0.1);
+    color: #0a9d5a;
+    font-size: 26px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .guarantee-headline {
+    font-family: var(--display);
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .guarantee p { font-family: var(--body); font-size: 15.5px; color: var(--ink-muted); max-width: 520px; margin: 0 auto; }
+  .guarantee p strong { color: var(--ink); font-weight: 600; }
+
+  /* ── BUY ── */
+  .buy-section { text-align: center; }
+  .buy-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 36px;
+    max-width: 440px;
+    margin: 0 auto;
+    box-shadow: 0 24px 50px rgba(7,16,49,0.08);
+  }
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .price { font-family: var(--display); font-size: 44px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+  .price-note { font-family: var(--body); font-size: 13.5px; color: var(--ink-muted); }
+
+  .includes { list-style: none; margin-bottom: 26px; text-align: left; }
+  .includes li {
+    font-family: var(--body);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .includes li:last-child { border-bottom: none; }
+  .includes li::before { content: '✓'; color: #0a9d5a; font-weight: 800; flex-shrink: 0; }
+
+  .buy-card .hero-cta { margin-top: 0; width: 100%; justify-content: center; }
+  .buy-footnote { font-family: var(--body); font-size: 13px; color: var(--ink-faint); text-align: center; margin-top: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid var(--hairline);
+  }
+  .footer-meta {
+    font-family: var(--display);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    font-weight: 500;
+    line-height: 1.8;
+  }
+  .footer-meta a { text-decoration: underline; text-underline-offset: 2px; }
+
+  ::selection { background: var(--ink); color: var(--white); }
+</style>
+</head>
+<body>
+
+<div class="offer-bar">
+  <span class="offer-label">Limited to 100 spots</span>
+  <span class="offer-copy">Cohort closes in:</span>
+  <span class="offer-countdown" id="offer-countdown">--h --m --s</span>
+</div>
+
+<main>
+  <!-- ── HERO ── -->
+  <div class="container hero">
+    <span class="eyebrow">The $100 Challenge</span>
+    <h1>Post every day for 30 days.<br>Get <span class="accent-underline">110% of your money back.</span></h1>
+
+    <div class="vsl-wrap">
+      <div class="vsl-frame">
+        <video controls preload="metadata" playsinline src="https://assets-v2.circle.so/sfg7ogatd87vu2i3038jhurvdupw"></video>
+      </div>
+    </div>
+
+    <p class="lead">
+      You are 30 days away from changing your life; and it all starts with just one post per day. We'll pay you back if you do the work.
+    </p>
+    <a href="https://dailypostchallenge.com/register" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
+    <span class="hero-micro">Limited to 100 spots per cohort · new cohort daily</span>
+  </div>
+
+  <!-- ── PROOF ── -->
+  <section class="alt">
+    <div class="container">
+      <h2>We are already winning</h2>
+      <p class="section-sub">Real people getting real results.</p>
+      <div class="cohort-grid">
+        <button type="button" class="cohort-card" data-story="joe">
+          <img src="images/proof-joe.png" alt="Screenshot of Joe's follower growth: 11,152 followers, +569.0% vs June 5.">
+          <div class="cohort-card-body">
+            <div class="cohort-card-name">Joe</div>
+            <div class="cohort-card-stat">Zero to <strong>11,000+ followers</strong> in 30 days</div>
+            <div class="cohort-card-more">Read the story →</div>
+          </div>
+        </button>
+        <button type="button" class="cohort-card" data-story="hailey">
+          <img src="images/proof-hailey.jpg" alt="Screenshot of Hailey Ky's message in the community: Day 4 video at 114k views at this point.">
+          <div class="cohort-card-body">
+            <div class="cohort-card-name">Hailey Ky</div>
+            <div class="cohort-card-stat">Day 4: <strong>first 100K+ view</strong> video</div>
+            <div class="cohort-card-more">Read the story →</div>
+          </div>
+        </button>
+        <button type="button" class="cohort-card" data-story="zach">
+          <img src="images/proof-zach.jpg" alt="Screenshot of Zach B's Instagram Insights showing 62,447 views.">
+          <div class="cohort-card-body">
+            <div class="cohort-card-name">Zach B</div>
+            <div class="cohort-card-stat">Day 2: <strong>62K views</strong>, 87 comments</div>
+            <div class="cohort-card-more">Read the story →</div>
+          </div>
+        </button>
+        <button type="button" class="cohort-card" data-story="coco">
+          <img src="images/proof-coco.jpg" alt="Screenshot of Coco's Reel insights showing 169,543 views.">
+          <div class="cohort-card-body">
+            <div class="cohort-card-name">Coco</div>
+            <div class="cohort-card-stat">Day 1: <strong>169K views</strong> on a 25-second video</div>
+            <div class="cohort-card-more">Read the story →</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RULES ── -->
+  <section>
+    <div class="container">
+      <div class="section-label">Challenge Rules</div>
+      <h2>The difference between where you are now and where you want to be is the action you take today.</h2>
+      <p class="section-sub">Here are the challenge rules:</p>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-num">01</div>
+          <div class="rule-name">You must post 1 video per day</div>
+          <div class="rule-desc">Each day you must upload a video. Static posts do not count.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">02</div>
+          <div class="rule-name">1 channel focus</div>
+          <div class="rule-desc">You must post daily on a specific channel of your choice.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">03</div>
+          <div class="rule-name">No reposting existing content</div>
+          <div class="rule-desc">Every post must be new and original.</div>
+        </div>
+      </div>
+      <div class="rules-cta">
+        <a href="https://daily-post-challenge.circle.so/checkout/30-day-posting-challenge" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
+        <span class="hero-micro">Limited to 100 spots per cohort</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VALUE STACK ── -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-label">What You Get</div>
+      <h2>We Help You Win!</h2>
+      <p class="section-sub">We give you all the resources you need to win your 30-day challenge.</p>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-icon">01</div>
+          <div class="value-name">Weekly Content Call</div>
+          <span class="value-tag">($999 value)</span>
+          <div class="value-desc">Interactive workshop with unlimited Q&amp;A. I'll keep answering until there are none left!</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">02</div>
+          <div class="value-name">AI Content Hub</div>
+          <span class="value-tag">($199 value)</span>
+          <div class="value-desc">A fill-in-the-blanks project that becomes your content command center inside ChatGPT.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">03</div>
+          <div class="value-name">Pull / Drag Audit Custom GPT</div>
+          <span class="value-tag">($99 value)</span>
+          <div class="value-desc">Diagnose exactly why you haven't been able to stick with creating content every time you've tried.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">04</div>
+          <div class="value-name">Setlist Creator</div>
+          <span class="value-tag">($99 value)</span>
+          <div class="value-desc">A template for selecting your core content pillars to create repeatable, winning content.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">05</div>
+          <div class="value-name">30-in-30 Tracker Template</div>
+          <span class="value-tag">($99 value)</span>
+          <div class="value-desc">Most leadership programs leave you on your own. We don't. Get ongoing coaching, an engaged community, weekly mastermind calls, and real-time support exactly when you need it most.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">06</div>
+          <div class="value-name">Content Reposting Automations</div>
+          <span class="value-tag">($399 value)</span>
+          <div class="value-desc">Automatically repost your content to the other major platforms.</div>
+        </div>
+      </div>
+      <div class="value-total">
+        <span class="value-total-label">Total bonus value</span>
+        <span class="value-total-amount"><span class="value-total-strike">$1,894</span>included free</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GUARANTEE ── -->
+  <section>
+    <div class="container">
+      <div class="guarantee">
+        <div class="guarantee-mark">&#10003;</div>
+        <div class="guarantee-headline">Post 30 days straight. Get $110 back.</div>
+        <p>
+          This isn't a course you buy and forget. Put in <strong>$100</strong>, show up every day for 30 days, and we hand back <strong>110%</strong> — plus you keep every bonus above. The best investment you can make is in yourself. The returns are exponential.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BUY ── -->
+  <section class="alt buy-section">
+    <div class="container">
+      <h2>Ready to commit?</h2>
+      <p class="lead" style="margin-bottom: 36px;">Only 100 spots per cohort. A new cohort forms <strong>every day</strong> — join today's.</p>
+      <div class="buy-card">
+        <div class="price-row">
+          <span class="price">$100</span>
+          <span class="price-note">entry · 110% back on completion</span>
+        </div>
+        <ul class="includes">
+          <li>30-day posting challenge, starts today</li>
+          <li>Weekly Content Call ($999 value)</li>
+          <li>AI Content Hub ($199 value)</li>
+          <li>Pull / Drag Audit Custom GPT ($99 value)</li>
+          <li>Setlist Creator ($99 value)</li>
+          <li>30-in-30 Tracker Template ($99 value)</li>
+          <li>Content Reposting Automations ($399 value)</li>
+        </ul>
+        <a href="https://daily-post-challenge.circle.so/checkout/30-day-posting-challenge" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
+        <div class="buy-footnote">Limited to 100 spots per challenge.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-meta">
+    &copy; 2026 Daily Post Challenge<br>
+    <a href="mailto:management@notmattgraham.com">management@notmattgraham.com</a>
+  </div>
+</footer>
+
+<div class="story-modal" id="story-modal">
+  <div class="story-modal-backdrop" data-close></div>
+  <div class="story-modal-panel" role="dialog" aria-modal="true" aria-labelledby="story-modal-name">
+    <button type="button" class="story-modal-close" data-close aria-label="Close">&times;</button>
+    <div class="story-modal-images" id="story-modal-images"></div>
+    <div class="story-modal-body">
+      <div class="story-modal-name" id="story-modal-name"></div>
+      <div class="story-modal-role" id="story-modal-role"></div>
+      <p class="story-modal-text" id="story-modal-text"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var stories = {
+      joe: {
+        name: 'Joe',
+        role: 'Cohort graduate · full 30-day challenge',
+        images: ['images/proof-joe.png', 'images/proof-joe-2.png'],
+        text: "Joe started the challenge with zero real momentum. Thirty days of daily posting later, he'd grown to 11,152 followers — up 569% — and racked up 10,528,900 views on his content. 99.4% of those views came from people who didn't already follow him: proof the work was landing in front of brand-new eyes, every single day."
+      },
+      hailey: {
+        name: 'Hailey Ky',
+        role: 'Nomadic Entreprenuer · Cohort 1',
+        images: ['images/proof-hailey.jpg', 'images/proof-hailey-2.jpg'],
+        text: 'By day 4 of the challenge, Hailey’s video "The Skills Needed to Become Rich in 2026" had already crossed 114,000 views inside the community dashboard — and kept climbing to 117K on the platform itself. Her first big hit, four days in.'
+      },
+      zach: {
+        name: 'Zach B',
+        role: 'I build things · Cohort 1',
+        images: ['images/proof-zach.jpg'],
+        text: 'Zach told a friend he "sucked at social" and there was no way any of this would work. Two days into the challenge, a single post had pulled 62,447 views, 1,550 viewers, 695 likes, and 87 comments.'
+      },
+      coco: {
+        name: 'Coco',
+        role: 'Intentional Remote Work · Cohort 1',
+        images: ['images/proof-coco.jpg'],
+        text: "Coco's very first post — a 25-second video on day 1 — pulled 169,543 views (157,986 of them on Facebook alone), 2K likes, and 366 total interactions before day 2 even started."
+      }
+    };
+
+    var modal = document.getElementById('story-modal');
+    var imagesEl = document.getElementById('story-modal-images');
+    var nameEl = document.getElementById('story-modal-name');
+    var roleEl = document.getElementById('story-modal-role');
+    var textEl = document.getElementById('story-modal-text');
+    var lastFocused = null;
+
+    function openStory(key) {
+      var s = stories[key];
+      if (!s) return;
+      imagesEl.innerHTML = '';
+      s.images.forEach(function (src) {
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = s.name + ' proof screenshot';
+        imagesEl.appendChild(img);
+      });
+      nameEl.textContent = s.name;
+      roleEl.textContent = s.role;
+      textEl.textContent = s.text;
+      lastFocused = document.activeElement;
+      modal.classList.add('open');
+      modal.querySelector('.story-modal-close').focus();
+    }
+
+    function closeStory() {
+      modal.classList.remove('open');
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('[data-story]').forEach(function (card) {
+      card.addEventListener('click', function () { openStory(card.getAttribute('data-story')); });
+    });
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', closeStory);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeStory();
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var el = document.getElementById('offer-countdown');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    // Resets to a fresh ~24h every midnight — recomputed on every tick, not
+    // captured once, so the countdown rolls over on its own at local midnight.
+    function tick() {
+      var now = new Date();
+      var midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+      var diff = midnight.getTime() - now.getTime();
+      var h = Math.floor(diff / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      el.textContent = pad(h) + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>
