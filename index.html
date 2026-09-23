@@ -449,6 +449,7 @@
     margin: 0 auto;
   }
   .coach-card { text-align: center; }
+  .coach-id { display: block; }
   .coach-photo {
     width: 140px;
     height: 140px;
@@ -479,9 +480,22 @@
   .coach-stats li::before { content: '-'; color: var(--ink-faint); flex-shrink: 0; }
   .coach-stats li strong { color: var(--ink); font-weight: 700; }
   @media (max-width: 760px) {
-    .coach-grid { grid-template-columns: 1fr; max-width: 320px; gap: 22px; }
-    .coach-photo { margin-bottom: 12px; }
-    .coach-name { margin-bottom: 6px; }
+    .coach-grid { grid-template-columns: 1fr; max-width: 380px; gap: 26px; }
+    .coach-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      text-align: left;
+    }
+    .coach-id {
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .coach-photo { width: 88px; height: 88px; margin: 0 0 8px; }
+    .coach-name { margin-bottom: 0; font-size: 15px; text-align: center; }
+    .coach-stats { flex: 1; display: block; }
     .coach-stats li { padding: 2px 0; }
   }
 
@@ -724,8 +738,10 @@
       <p class="section-sub">People who've actually done it, not just talked about it.</p>
       <div class="coach-grid">
         <div class="coach-card">
-          <img class="coach-photo" src="images/coach-matt.jpg" alt="Matt">
-          <div class="coach-name">Matt</div>
+          <div class="coach-id">
+            <img class="coach-photo" src="images/coach-matt.jpg" alt="Matt">
+            <div class="coach-name">Matt</div>
+          </div>
           <ul class="coach-stats">
             <li><strong>1.1M</strong> followers</li>
             <li><strong>1.5B</strong> views</li>
@@ -733,16 +749,20 @@
           </ul>
         </div>
         <div class="coach-card">
-          <img class="coach-photo" src="images/coach-justyn.jpg" alt="Justyn">
-          <div class="coach-name">Justyn</div>
+          <div class="coach-id">
+            <img class="coach-photo" src="images/coach-justyn.jpg" alt="Justyn">
+            <div class="coach-name">Justyn</div>
+          </div>
           <ul class="coach-stats">
             <li><strong>250K</strong> followers</li>
             <li><strong>500+</strong> days in a row of posting</li>
           </ul>
         </div>
         <div class="coach-card">
-          <img class="coach-photo" src="images/coach-joe.jpg" alt="Joe">
-          <div class="coach-name">Joe</div>
+          <div class="coach-id">
+            <img class="coach-photo" src="images/coach-joe.jpg" alt="Joe">
+            <div class="coach-name">Joe</div>
+          </div>
           <ul class="coach-stats">
             <li><strong>75K</strong> followers</li>
             <li><strong>0 to 11K</strong> followers in 30 days</li>
