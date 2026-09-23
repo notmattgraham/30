@@ -468,6 +468,13 @@
     color: var(--ink);
     margin-bottom: 10px;
   }
+  .coach-handle {
+    font-family: var(--body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
   .coach-stats { list-style: none; display: inline-block; text-align: left; }
   .coach-stats li {
     font-family: var(--body);
@@ -479,6 +486,26 @@
   }
   .coach-stats li::before { content: '-'; color: var(--ink-faint); flex-shrink: 0; }
   .coach-stats li strong { color: var(--ink); font-weight: 700; }
+  .coach-social {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .coach-social-link {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .coach-social-link svg { width: 16px; height: 16px; }
+  .coach-social-link:hover { background: var(--ink); color: #fff; transform: translateY(-2px); }
   @media (max-width: 760px) {
     .coach-grid { grid-template-columns: 1fr; max-width: 380px; gap: 26px; }
     .coach-card {
@@ -495,8 +522,10 @@
     }
     .coach-photo { width: 88px; height: 88px; margin: 0 0 8px; }
     .coach-name { margin-bottom: 0; font-size: 15px; text-align: center; }
-    .coach-stats { flex: 1; display: block; }
+    .coach-details { flex: 1; }
+    .coach-stats { display: block; }
     .coach-stats li { padding: 2px 0; }
+    .coach-social { justify-content: flex-start; margin-top: 10px; }
   }
 
   /* ── VALUE STACK ── */
@@ -742,31 +771,63 @@
             <img class="coach-photo" src="images/coach-matt.jpg" alt="Matt">
             <div class="coach-name">Matt</div>
           </div>
-          <ul class="coach-stats">
-            <li><strong>1.1M</strong> followers</li>
-            <li><strong>1.5B</strong> views</li>
-            <li><strong>18 years</strong> of content experience</li>
-          </ul>
+          <div class="coach-details">
+            <div class="coach-handle">@notmattgraham</div>
+            <ul class="coach-stats">
+              <li><strong>1.1M</strong> followers</li>
+              <li><strong>1.5B</strong> views</li>
+            </ul>
+            <div class="coach-social">
+              <a class="coach-social-link" href="https://instagram.com/notmattgraham" target="_blank" rel="noopener" aria-label="Matt on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a class="coach-social-link" href="https://tiktok.com/@notmattgraham" target="_blank" rel="noopener" aria-label="Matt on TikTok">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
         <div class="coach-card">
           <div class="coach-id">
             <img class="coach-photo" src="images/coach-justyn.jpg" alt="Justyn">
             <div class="coach-name">Justyn</div>
           </div>
-          <ul class="coach-stats">
-            <li><strong>250K</strong> followers</li>
-            <li><strong>500+</strong> days in a row of posting</li>
-          </ul>
+          <div class="coach-details">
+            <div class="coach-handle">@justyn.ai</div>
+            <ul class="coach-stats">
+              <li><strong>250K</strong> followers</li>
+              <li><strong>500+</strong> days in a row of posting</li>
+            </ul>
+            <div class="coach-social">
+              <a class="coach-social-link" href="https://instagram.com/justyn.ai" target="_blank" rel="noopener" aria-label="Justyn on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a class="coach-social-link" href="https://tiktok.com/@justyn.ai" target="_blank" rel="noopener" aria-label="Justyn on TikTok">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
         <div class="coach-card">
           <div class="coach-id">
             <img class="coach-photo" src="images/coach-joe.jpg" alt="Joe">
             <div class="coach-name">Joe</div>
           </div>
-          <ul class="coach-stats">
-            <li><strong>75K</strong> followers</li>
-            <li><strong>0 to 11K</strong> followers in 30 days</li>
-          </ul>
+          <div class="coach-details">
+            <div class="coach-handle">@joejitsu.tech</div>
+            <ul class="coach-stats">
+              <li><strong>75K</strong> followers</li>
+              <li><strong>0 to 11K</strong> followers in 30 days</li>
+            </ul>
+            <div class="coach-social">
+              <a class="coach-social-link" href="https://instagram.com/joejitsu.tech" target="_blank" rel="noopener" aria-label="Joe on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a class="coach-social-link" href="https://tiktok.com/@joezapiain" target="_blank" rel="noopener" aria-label="Joe on TikTok">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
