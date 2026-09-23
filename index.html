@@ -448,7 +448,6 @@
     max-width: 780px;
     margin: 0 auto;
   }
-  @media (max-width: 760px) { .coach-grid { grid-template-columns: 1fr; max-width: 320px; gap: 40px; } }
   .coach-card { text-align: center; }
   .coach-photo {
     width: 140px;
@@ -477,8 +476,14 @@
     display: flex;
     gap: 8px;
   }
-  .coach-stats li::before { content: '—'; color: var(--ink-faint); flex-shrink: 0; }
+  .coach-stats li::before { content: '-'; color: var(--ink-faint); flex-shrink: 0; }
   .coach-stats li strong { color: var(--ink); font-weight: 700; }
+  @media (max-width: 760px) {
+    .coach-grid { grid-template-columns: 1fr; max-width: 320px; gap: 22px; }
+    .coach-photo { margin-bottom: 12px; }
+    .coach-name { margin-bottom: 6px; }
+    .coach-stats li { padding: 2px 0; }
+  }
 
   /* ── VALUE STACK ── */
   .value-grid {
@@ -717,7 +722,7 @@
     <div class="container">
       <div class="section-label">Your Coaches</div>
       <h2>Meet your coaches</h2>
-      <p class="section-sub">People who've actually done it — not just talked about it.</p>
+      <p class="section-sub">People who've actually done it, not just talked about it.</p>
       <div class="coach-grid">
         <div class="coach-card">
           <img class="coach-photo" src="images/coach-matt.jpg" alt="Matt">
@@ -803,7 +808,7 @@
   <section class="alt buy-section">
     <div class="container">
       <h2>Ready to commit?</h2>
-      <p class="lead" style="margin-bottom: 36px;">Only 100 spots per cohort. A new cohort forms <strong>every day</strong> — join today's.</p>
+      <p class="lead" style="margin-bottom: 36px;">Only 100 spots per cohort. A new cohort forms <strong>every day</strong>, so join today's.</p>
       <div class="buy-card">
         <div class="price-row">
           <span class="price">$100</span>
@@ -855,7 +860,7 @@
         name: 'Joe',
         role: 'Cohort graduate · full 30-day challenge',
         images: ['images/proof-joe.png', 'images/proof-joe-2.png'],
-        text: "Joe started the challenge with zero real momentum. Thirty days of daily posting later, he'd grown to 11,152 followers — up 569% — and racked up 10,528,900 views on his content. 99.4% of those views came from people who didn't already follow him: proof the work was landing in front of brand-new eyes, every single day."
+        text: "Joe started the challenge with zero real momentum. Thirty days of daily posting later, he'd grown to 11,152 followers (up 569%) and racked up 10,528,900 views on his content. 99.4% of those views came from people who didn't already follow him: proof the work was landing in front of brand-new eyes, every single day."
       },
       hailey: {
         name: 'Hailey Ky',
@@ -873,7 +878,7 @@
         name: 'Coco',
         role: 'Intentional Remote Work · Cohort 1',
         images: ['images/proof-coco.jpg'],
-        text: "Coco's very first post — a 25-second video on day 1 — pulled 169,543 views (157,986 of them on Facebook alone), 2K likes, and 366 total interactions before day 2 even started."
+        text: "Coco's very first post, a 25-second video on day 1, pulled 169,543 views (157,986 of them on Facebook alone), 2K likes, and 366 total interactions before day 2 even started."
       }
     };
 
@@ -887,7 +892,7 @@
     var imageCount = 1;
 
     // A dot indicator is invisible against the white screenshots most of
-    // these stories use, so a solid dark "next" arrow replaces it — it stays
+    // these stories use, so a solid dark "next" arrow replaces it. It stays
     // legible regardless of what's behind it, and hides once there's nothing
     // left to advance to.
     function updateNextButton() {
@@ -946,7 +951,7 @@
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
-    // Resets to a fresh ~24h every midnight — recomputed on every tick, not
+    // Resets to a fresh ~24h every midnight, recomputed on every tick, not
     // captured once, so the countdown rolls over on its own at local midnight.
     function tick() {
       var now = new Date();
