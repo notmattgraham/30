@@ -84,7 +84,7 @@
   .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
   /* ── HERO ── */
-  .hero { padding: 56px 0 8px; text-align: center; }
+  .hero { padding-top: 56px; padding-bottom: 8px; text-align: center; }
   .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -333,6 +333,7 @@
     align-items: center;
     justify-content: center;
   }
+  .story-modal-media { position: relative; }
   .story-modal-images {
     display: flex;
     overflow-x: auto;
@@ -346,6 +347,33 @@
     max-height: 380px;
     object-fit: contain;
     display: block;
+  }
+  .story-modal-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    pointer-events: none;
+  }
+  .story-modal-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .story-modal-dot.active {
+    background: #fff;
+    transform: scale(1.35);
   }
   .story-modal-body { padding: 26px 28px 30px; }
   .story-modal-name {
@@ -781,7 +809,10 @@
   <div class="story-modal-backdrop" data-close></div>
   <div class="story-modal-panel" role="dialog" aria-modal="true" aria-labelledby="story-modal-name">
     <button type="button" class="story-modal-close" data-close aria-label="Close">&times;</button>
-    <div class="story-modal-images" id="story-modal-images"></div>
+    <div class="story-modal-media">
+      <div class="story-modal-images" id="story-modal-images"></div>
+      <div class="story-modal-dots" id="story-modal-dots"></div>
+    </div>
     <div class="story-modal-body">
       <div class="story-modal-name" id="story-modal-name"></div>
       <div class="story-modal-role" id="story-modal-role"></div>
@@ -821,21 +852,48 @@
 
     var modal = document.getElementById('story-modal');
     var imagesEl = document.getElementById('story-modal-images');
+    var dotsEl = document.getElementById('story-modal-dots');
     var nameEl = document.getElementById('story-modal-name');
     var roleEl = document.getElementById('story-modal-role');
     var textEl = document.getElementById('story-modal-text');
     var lastFocused = null;
 
+    function setActiveDot(index) {
+      dotsEl.querySelectorAll('.story-modal-dot').forEach(function (dot, i) {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    // Carousel dots only appear with 2+ images — they're the sole cue that a
+    // card's story has more than one screenshot to swipe through.
+    imagesEl.addEventListener('scroll', function () {
+      var index = Math.round(imagesEl.scrollLeft / imagesEl.clientWidth);
+      setActiveDot(index);
+    });
+
     function openStory(key) {
       var s = stories[key];
       if (!s) return;
       imagesEl.innerHTML = '';
-      s.images.forEach(function (src) {
+      dotsEl.innerHTML = '';
+      s.images.forEach(function (src, i) {
         var img = document.createElement('img');
         img.src = src;
         img.alt = s.name + ' proof screenshot';
         imagesEl.appendChild(img);
+
+        if (s.images.length > 1) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'story-modal-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Show image ' + (i + 1) + ' of ' + s.images.length);
+          dot.addEventListener('click', function () {
+            imagesEl.scrollTo({ left: i * imagesEl.clientWidth, behavior: 'smooth' });
+          });
+          dotsEl.appendChild(dot);
+        }
       });
+      imagesEl.scrollLeft = 0;
       nameEl.textContent = s.name;
       roleEl.textContent = s.role;
       textEl.textContent = s.text;
