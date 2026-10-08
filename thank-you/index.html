@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Your Playbook Is On The Way | Creator Launchpad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --charcoal:   #1f2d33;
+      --panel:      #2a3c42;
+      --teal-light: #74bbb7;
+      --teal:       #3d7775;
+      --teal-dark:  #2f5e5c;
+      --off-white:  #f7f8f8;
+      --muted-dark: #b0bdc1;
+      --border:     #d9e5e6;
+      --white:      #ffffff;
+      --ink:        var(--charcoal);
+      --ink-soft:   #34454c;
+      --ink-muted:  #5f7076;
+      --display: 'Futura', 'Futura PT', 'Jost', 'Century Gothic', sans-serif;
+      --body:    Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      background: var(--white);
+      color: var(--ink-soft);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; }
+
+    .topbar { background: var(--charcoal); display: flex; justify-content: center; padding: 10px 16px; }
+    .topbar img { width: 64px; height: 64px; margin: -15px 0; }
+
+    main {
+      flex: 1;
+      max-width: 620px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 56px 16px 64px;
+      text-align: center;
+    }
+
+    .check {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .check svg { width: 30px; height: 30px; }
+
+    .label {
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    h1 {
+      text-wrap: balance;
+      font-family: var(--display);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: clamp(30px, 6vw, 48px);
+      line-height: 1.05;
+      color: var(--ink);
+      margin: 10px 0 14px;
+    }
+    .sub { font-size: 18px; color: var(--ink-muted); }
+
+    /* Same geometric font as the line under the video, regular weight */
+    .email-note {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(18px, 2.6vw, 21px);
+      color: var(--ink);
+      margin-top: 2px;
+    }
+    .resend {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 14.5px;
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .resend:hover { color: var(--teal-dark); }
+    .pitch {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(20px, 3.4vw, 26px);
+      line-height: 1.25;
+      color: var(--ink);
+      max-width: 520px;
+      margin: 6px auto 0;
+      text-wrap: balance;
+    }
+
+    .how {
+      list-style: none;
+      display: grid;
+      width: fit-content;
+      gap: 8px;
+      margin: 22px auto 0;
+      text-align: left;
+    }
+    .how li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--ink);
+    }
+    .how li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+      flex: none;
+    }
+
+    /* ── VIDEO ── */
+    .video-wrap {
+      position: relative;
+      margin: 22px auto 20px;
+      max-width: 640px;
+      aspect-ratio: 16 / 9;
+      background: var(--charcoal);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(31,45,51,0.18);
+    }
+    .video-wrap video { width: 100%; height: 100%; display: block; object-fit: cover; background: var(--charcoal); }
+    .sound-btn {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      background: var(--teal-light);
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      white-space: nowrap;
+    }
+    .sound-btn:hover { background: #8ccac6; }
+    .sound-btn:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
+    .sound-btn svg { width: 18px; height: 18px; }
+    .sound-btn[hidden] { display: none; }
+
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 26px;
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--teal);
+      border-radius: 8px;
+      padding: 16px 26px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn:hover { background: var(--teal-dark); transform: translateY(-1px); }
+    .btn:focus-visible { outline: 3px solid var(--teal-light); outline-offset: 2px; }
+
+    .note { font-size: 14px; color: var(--ink-muted); margin-top: 12px; }
+
+    .next {
+      list-style: none;
+      text-align: left;
+      margin: 40px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+    .next li {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .next .n { font-family: var(--display); font-weight: 600; color: var(--teal); font-size: 17px; }
+    .next strong { display: block; font-family: var(--display); text-transform: uppercase; color: var(--ink); letter-spacing: 0.02em; }
+    .next span.d { font-size: 14.5px; color: var(--ink-muted); }
+
+    /* Dark card, per the guide: panel/charcoal + off-white + light teal */
+    .challenge {
+      margin-top: 40px;
+      background: var(--charcoal);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: left;
+      color: var(--muted-dark);
+    }
+    .challenge .label { color: var(--teal-light); }
+    .challenge h2 {
+      font-family: var(--display);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 24px;
+      line-height: 1.15;
+      color: var(--off-white);
+      margin: 8px 0 8px;
+    }
+    .challenge p { font-size: 15px; }
+    .challenge .btn {
+      color: var(--charcoal);
+      background: var(--teal-light);
+      margin-top: 18px;
+    }
+    .challenge .btn:hover { background: #8ccac6; }
+
+    footer {
+      background: var(--charcoal);
+      color: var(--muted-dark);
+      text-align: center;
+      padding: 24px 16px 28px;
+      font-size: 13px;
+    }
+
+    .btn { white-space: nowrap; }
+    .next strong, .challenge h2, .challenge .label { text-wrap: balance; }
+    /* Phones: pull the video up toward the middle of the screen. */
+    @media (max-width: 600px) {
+      main { padding-top: 18px; }
+      .check { width: 40px; height: 40px; margin-bottom: 10px; }
+      .check svg { width: 20px; height: 20px; }
+      h1 { font-size: 26px; margin: 6px 0 6px; }
+      .email-note { font-size: 16px; }
+      .resend { margin-top: 0; }
+      .video-wrap { margin-top: 14px; }
+    }
+    @media (max-width: 520px) {
+      .btn { width: 100%; padding: 16px 10px; font-size: clamp(12px, 3.9vw, 16px); letter-spacing: 0.02em; }
+      .challenge { padding: 24px 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="../"><img src="../cl.svg" alt="Creator Launchpad" width="64" height="64"></a>
+  </header>
+
+  <main>
+    <div class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="label">You're in</div>
+    <h1 id="headline">Your playbook is on the way</h1>
+    <p class="email-note">Keep an eye on your email!</p>
+    <a class="resend" href="../10K%20Follower%20Playbook.pdf" download="10K Follower Playbook.pdf">Didn't receive it?</a>
+
+    <div class="video-wrap">
+      <video id="kit-video" src="https://join.dailypostchallenge.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQytZT1F3PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4e29f8b7b8ad36239163680a86f15924c8f273fc/ConfirmationVSL_2.mp4" autoplay muted playsinline preload="auto"></video>
+      <button type="button" class="sound-btn" id="sound-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+        <span id="sound-label">Tap for sound</span>
+      </button>
+    </div>
+
+    <p class="pitch">Now that you have the tools, get the accountability to maximize them.</p>
+    <a class="btn" href="https://notmattgraham.com/30/">Join the challenge &rarr;</a>
+    <ul class="how">
+      <li>One post every day</li>
+      <li>For 30 days</li>
+      <li>Get 110% of your money back</li>
+    </ul>
+  </main>
+
+  <footer>&copy; 2026 Creator Launchpad</footer>
+
+<script>
+  (function () {
+    try {
+      var name = sessionStorage.getItem('kit_first_name');
+      if (name) {
+        document.getElementById('headline').textContent = name + ', your playbook is on the way';
+      }
+    } catch (err) {}
+  })();
+</script>
+<script>
+  // Browsers only autoplay muted video, so start muted and offer sound.
+  // Tapping for sound restarts the video from the top with audio and controls.
+  (function () {
+    var video = document.getElementById('kit-video');
+    var btn = document.getElementById('sound-btn');
+    var label = document.getElementById('sound-label');
+
+    function playWithSound() {
+      video.muted = false;
+      video.currentTime = 0;
+      video.controls = true;
+      btn.hidden = true;
+      var p = video.play();
+      if (p && p.catch) {
+        // If the browser still refuses sound, keep it playing muted and
+        // leave the button up so they can try again.
+        p.catch(function () {
+          video.muted = true;
+          video.controls = false;
+          label.textContent = 'Tap for sound';
+          btn.hidden = false;
+          video.play().catch(function () {});
+        });
+      }
+    }
+
+    btn.addEventListener('click', playWithSound);
+
+    // Try to autoplay. If it's blocked (e.g. iPhone Low Power Mode), the
+    // button becomes a play button instead.
+    function tryAutoplay() {
+      if (!video.muted || video.ended || !video.paused) return;
+      var attempt = video.play();
+      if (attempt && attempt.then) {
+        attempt.then(function () { label.textContent = 'Tap for sound'; })
+               .catch(function () { label.textContent = 'Play video'; });
+      }
+    }
+    tryAutoplay();
+
+    // Pages opened in a background tab can't autoplay until they're shown.
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) tryAutoplay();
+    });
+
+    // When it finishes muted, invite them to watch with sound.
+    video.addEventListener('ended', function () {
+      if (video.muted) { label.textContent = 'Watch with sound'; btn.hidden = false; }
+    });
+  })();
+</script>
+</body>
+</html>
