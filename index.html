@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The $100 Daily Post Challenge</title>
-<meta name="description" content="Post every day for 30 days and get 110% of your money back. Limited to 100 people. Begins September 15, 2026." />
+<meta name="description" content="Post every day for 30 days and get 110% of your money back. The Fall Challenge closes November 30th." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -68,18 +68,9 @@
     color: var(--accent-light);
   }
   .offer-bar .offer-copy { font-size: 13px; font-weight: 500; color: var(--white); opacity: 0.85; }
-  .offer-bar .offer-countdown {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    font-variant-numeric: tabular-nums;
-    background: rgba(255,255,255,0.12);
-    padding: 3px 10px;
-    border-radius: 999px;
-  }
   @media (max-width: 640px) {
-    .offer-bar { padding: 9px 12px; }
-    .offer-bar .offer-copy { display: none; }
+    .offer-bar { padding: 8px 12px; gap: 2px 10px; }
+    .offer-bar .offer-copy { font-size: 12.5px; }
   }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -218,17 +209,17 @@
     margin: 0 auto 44px;
   }
 
-  /* ── COHORT PROOF ── */
-  .cohort-grid {
+  /* ── CHALLENGE PROOF ── */
+  .proof-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     max-width: 1080px;
     margin: 0 auto;
   }
-  @media (max-width: 900px) { .cohort-grid { grid-template-columns: 1fr 1fr; max-width: 640px; } }
-  @media (max-width: 480px) { .cohort-grid { grid-template-columns: 1fr; max-width: 340px; } }
-  .cohort-card {
+  @media (max-width: 900px) { .proof-grid { grid-template-columns: 1fr 1fr; max-width: 640px; } }
+  @media (max-width: 480px) { .proof-grid { grid-template-columns: 1fr; max-width: 340px; } }
+  .proof-card {
     background: var(--white);
     border: 1px solid var(--hairline);
     border-radius: 14px;
@@ -243,12 +234,12 @@
     border: 1px solid var(--hairline);
     padding: 0;
   }
-  .cohort-card:hover, .cohort-card:focus-visible {
+  .proof-card:hover, .proof-card:focus-visible {
     transform: translateY(-3px);
     box-shadow: 0 20px 36px rgba(31,45,51,0.12);
     outline: none;
   }
-  .cohort-card img {
+  .proof-card img {
     width: 100%;
     height: 220px;
     object-fit: contain;
@@ -256,21 +247,21 @@
     display: block;
     border-bottom: 1px solid var(--hairline);
   }
-  .cohort-card-body { padding: 16px 18px; }
-  .cohort-card-name {
+  .proof-card-body { padding: 16px 18px; }
+  .proof-card-name {
     font-family: var(--display);
     font-size: 14.5px;
     font-weight: 700;
     color: var(--ink);
   }
-  .cohort-card-stat {
+  .proof-card-stat {
     font-family: var(--body);
     font-size: 13.5px;
     color: var(--ink-muted);
     margin-top: 2px;
   }
-  .cohort-card-stat strong { color: var(--accent); font-weight: 700; }
-  .cohort-card-more {
+  .proof-card-stat strong { color: var(--accent); font-weight: 700; }
+  .proof-card-more {
     font-family: var(--display);
     font-size: 12px;
     font-weight: 700;
@@ -681,9 +672,8 @@
 <body>
 
 <div class="offer-bar">
-  <span class="offer-label">Limited to 100 spots</span>
-  <span class="offer-copy">Cohort closes in:</span>
-  <span class="offer-countdown" id="offer-countdown">--h --m --s</span>
+  <span class="offer-label">Fall Challenge closes November 30th</span>
+  <span class="offer-copy">The 110% money-back guarantee goes away with it.</span>
 </div>
 
 <main>
@@ -702,7 +692,7 @@
       You are 30 days away from changing your life; and it all starts with just one post per day. We'll pay you back if you do the work.
     </p>
     <a href="https://join.dailypostchallenge.com/checkout/30-day-posting-challenge" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
-    <span class="hero-micro">Limited to 100 spots per cohort</span>
+    <span class="hero-micro">Fall Challenge closes November 30th</span>
   </div>
 
   <!-- ── PROOF ── -->
@@ -710,37 +700,37 @@
     <div class="container">
       <h2>We are already winning</h2>
       <p class="section-sub">Real people getting real results.</p>
-      <div class="cohort-grid">
-        <button type="button" class="cohort-card" data-story="joe">
+      <div class="proof-grid">
+        <button type="button" class="proof-card" data-story="joe">
           <img src="images/proof-joe.png" alt="Screenshot of Joe's follower growth: 11,152 followers, +569.0% vs June 5.">
-          <div class="cohort-card-body">
-            <div class="cohort-card-name">Joe</div>
-            <div class="cohort-card-stat">Zero to <strong>11,000+ followers</strong> in 30 days</div>
-            <div class="cohort-card-more">Read the story →</div>
+          <div class="proof-card-body">
+            <div class="proof-card-name">Joe</div>
+            <div class="proof-card-stat">Zero to <strong>11,000+ followers</strong> in 30 days</div>
+            <div class="proof-card-more">Read the story →</div>
           </div>
         </button>
-        <button type="button" class="cohort-card" data-story="hailey">
+        <button type="button" class="proof-card" data-story="hailey">
           <img src="images/proof-hailey-card.png" alt="Hailey Ky's Instagram profile, ky.frequency: 14.6K followers.">
-          <div class="cohort-card-body">
-            <div class="cohort-card-name">Hailey Ky</div>
-            <div class="cohort-card-stat"><strong>300 to 14K+ followers</strong> in 20 days, plus her first product sales</div>
-            <div class="cohort-card-more">Read the story →</div>
+          <div class="proof-card-body">
+            <div class="proof-card-name">Hailey Ky</div>
+            <div class="proof-card-stat"><strong>300 to 14K+ followers</strong> in 20 days, plus her first product sales</div>
+            <div class="proof-card-more">Read the story →</div>
           </div>
         </button>
-        <button type="button" class="cohort-card" data-story="zach">
+        <button type="button" class="proof-card" data-story="zach">
           <img src="images/proof-zach.jpg" alt="Screenshot of Zach B's Instagram Insights showing 62,447 views.">
-          <div class="cohort-card-body">
-            <div class="cohort-card-name">Zach B</div>
-            <div class="cohort-card-stat">Day 2: <strong>62K views</strong>, 87 comments</div>
-            <div class="cohort-card-more">Read the story →</div>
+          <div class="proof-card-body">
+            <div class="proof-card-name">Zach B</div>
+            <div class="proof-card-stat">Day 2: <strong>62K views</strong>, 87 comments</div>
+            <div class="proof-card-more">Read the story →</div>
           </div>
         </button>
-        <button type="button" class="cohort-card" data-story="coco">
+        <button type="button" class="proof-card" data-story="coco">
           <img src="images/proof-coco.jpg" alt="Screenshot of Coco's Reel insights showing 169,543 views.">
-          <div class="cohort-card-body">
-            <div class="cohort-card-name">Coco</div>
-            <div class="cohort-card-stat">Day 1: <strong>169K views</strong> on a 25-second video</div>
-            <div class="cohort-card-more">Read the story →</div>
+          <div class="proof-card-body">
+            <div class="proof-card-name">Coco</div>
+            <div class="proof-card-stat">Day 1: <strong>169K views</strong> on a 25-second video</div>
+            <div class="proof-card-more">Read the story →</div>
           </div>
         </button>
       </div>
@@ -772,7 +762,7 @@
       </div>
       <div class="rules-cta">
         <a href="https://join.dailypostchallenge.com/checkout/30-day-posting-challenge" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
-        <span class="hero-micro">Limited to 100 spots per cohort</span>
+        <span class="hero-micro">Fall Challenge closes November 30th</span>
       </div>
     </div>
   </section>
@@ -906,7 +896,7 @@
   <section class="alt buy-section">
     <div class="container">
       <h2>Ready to commit?</h2>
-      <p class="lead" style="margin-bottom: 36px;">Only 100 spots per cohort. A new cohort forms <strong>every day</strong>, so join today's.</p>
+      <p class="lead" style="margin-bottom: 36px;">The Fall Challenge closes <strong>November 30th</strong>, and the 110% money-back guarantee goes away with it.</p>
       <div class="buy-card">
         <div class="price-row">
           <span class="price">$100</span>
@@ -922,7 +912,7 @@
           <li>Content Reposting Automations ($399 value)</li>
         </ul>
         <a href="https://join.dailypostchallenge.com/checkout/30-day-posting-challenge" class="hero-cta">Join The Challenge <span class="arrow">&rarr;</span></a>
-        <div class="buy-footnote">Limited to 100 spots per challenge.</div>
+        <div class="buy-footnote">Fall Challenge closes November 30th.</div>
       </div>
     </div>
   </section>
@@ -955,25 +945,25 @@
     var stories = {
       joe: {
         name: 'Joe',
-        role: 'Cohort graduate · full 30-day challenge',
+        role: 'Completed the full 30-day challenge',
         images: ['images/proof-joe.png', 'images/proof-joe-2.png'],
         text: "Joe started the challenge with zero real momentum. Thirty days of daily posting later, he'd grown to 11,152 followers (up 569%) and racked up 10,528,900 views on his content. 99.4% of those views came from people who didn't already follow him: proof the work was landing in front of brand-new eyes, every single day."
       },
       hailey: {
         name: 'Hailey Ky',
-        role: 'Nomadic Entrepreneur · Cohort 1',
+        role: 'Nomadic Entrepreneur',
         images: ['images/proof-hailey-profile.png', 'images/proof-hailey-239k.png', 'images/proof-hailey.jpg'],
         text: "Hailey started with about 300 followers on Instagram and videos that averaged 300 to 500 views. Early in the challenge, one of her videos hit 50,000 views, her most popular at the time. Her very next video, posted on day 4, passed 100,000 views and has since climbed to 239,000. In about 20 days she crossed 14,000 followers, launched her first product, and has already made multiple sales. She's officially monetized her brand."
       },
       zach: {
         name: 'Zach B',
-        role: 'I build things · Cohort 2',
+        role: 'I build things',
         images: ['images/proof-zach.jpg'],
         text: 'Zach told a friend he "sucked at social" and there was no way any of this would work. Two days into the challenge, a single post had pulled 62,447 views, 1,550 viewers, 695 likes, and 87 comments.'
       },
       coco: {
         name: 'Coco',
-        role: 'Intentional Remote Work · Cohort 1',
+        role: 'Intentional Remote Work',
         images: ['images/proof-coco.jpg'],
         text: "Coco's very first post, a 25-second video on day 1, pulled 169,543 views (157,986 of them on Facebook alone), 2K likes, and 366 total interactions before day 2 even started."
       }
@@ -1042,27 +1032,5 @@
   })();
 </script>
 
-<script>
-  (function () {
-    var el = document.getElementById('offer-countdown');
-
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    // Resets to a fresh ~24h every midnight, recomputed on every tick, not
-    // captured once, so the countdown rolls over on its own at local midnight.
-    function tick() {
-      var now = new Date();
-      var midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
-      var diff = midnight.getTime() - now.getTime();
-      var h = Math.floor(diff / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      var s = Math.floor((diff % 60000) / 1000);
-      el.textContent = pad(h) + 'h ' + pad(m) + 'm ' + pad(s) + 's';
-    }
-
-    tick();
-    setInterval(tick, 1000);
-  })();
-</script>
 </body>
 </html>
