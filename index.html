@@ -204,6 +204,59 @@
     margin: 0 auto 44px;
   }
 
+  .value-name + .value-desc { margin-top: 10px; }
+  /* ── HOW IT WORKS: $100 in, 30 days, $110 out ── */
+  .flow { display: flex; align-items: stretch; justify-content: center; gap: 14px; max-width: 900px; margin: 0 auto; }
+  .flow-step { flex: 1 1 0; background: var(--bg-card); border: 1px solid var(--hairline); border-radius: 16px; padding: 22px 18px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .45s ease, transform .45s ease, background .5s ease, border-color .5s ease, box-shadow .5s ease; }
+  .flow-mid { flex: 1.5 1 0; }
+  .flow-tag { font-family: var(--display); font-size: 12.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .flow-amount { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 5vw, 56px); line-height: 1; color: var(--ink); transition: color .5s ease; }
+  .flow-cap { font-family: var(--body); font-size: 15px; color: var(--ink-muted); margin-top: 10px; transition: color .5s ease; }
+  .flow-dots { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; width: 100%; max-width: 260px; }
+  .flow-dots span { aspect-ratio: 1; border-radius: 50%; background: var(--accent); transition: background .25s ease, transform .25s ease; }
+  .flow-arrow { align-self: center; font-family: var(--display); font-weight: 800; font-size: 30px; color: var(--accent); transition: opacity .35s ease, transform .35s ease; }
+  .flow-out { background: var(--accent); border-color: var(--accent); box-shadow: 0 14px 30px rgba(61,119,117,0.28); }
+  .flow-out .flow-tag { color: #cfe8e6; }
+  .flow-out .flow-amount, .flow-out .flow-cap { color: #fff; }
+  /* animation start states (only applied once the script is running) */
+  .flow.anim .flow-step, .flow.anim .flow-arrow { opacity: 0; transform: translateY(10px); }
+  .flow.anim .flow-step.show, .flow.anim .flow-arrow.show { opacity: 1; transform: none; }
+  .flow.anim .flow-dots span { background: var(--hairline); }
+  .flow.anim .flow-dots span.on { background: var(--accent); transform: scale(1.15); }
+  .flow.anim .flow-dots span.on.settled { transform: none; }
+  .flow.anim .flow-out:not(.paid) { background: var(--bg-card); border-color: var(--hairline); box-shadow: none; }
+  .flow.anim .flow-out:not(.paid) .flow-tag { color: var(--accent); }
+  .flow.anim .flow-out:not(.paid) .flow-amount { color: var(--ink); }
+  .flow.anim .flow-out:not(.paid) .flow-cap { color: var(--ink-muted); }
+  .flow-out.paid { animation: flow-pop .5s ease; }
+  @keyframes flow-pop { 0% { transform: scale(1); } 45% { transform: scale(1.07); } 100% { transform: scale(1); } }
+  @media (max-width: 700px) {
+    .flow { flex-direction: column; align-items: center; gap: 8px; }
+    .flow-step { width: 100%; max-width: 340px; flex: none; padding: 18px; }
+    .flow-arrow { transform: rotate(90deg); }
+    .flow.anim .flow-arrow { transform: rotate(90deg); }
+    .flow.anim .flow-arrow.show { transform: rotate(90deg); }
+  }
+  .rules-title { font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; font-size: clamp(20px, 2.6vw, 26px); color: var(--ink); text-align: center; margin: 0 0 24px; }
+
+  /* ── THE TWO KILLERS ── */
+  section.belong { background: var(--ink); border-top: none; text-align: center; }
+  section.belong h2 { color: #f7f8f8; margin-bottom: 36px; max-width: 900px; text-wrap: balance; }
+  .killer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 860px; margin: 0 auto; text-align: left; }
+  @media (max-width: 700px) { .killer-grid { grid-template-columns: 1fr; } }
+  .killer-card { background: #2a3c42; border-radius: 14px; padding: 26px; transition: opacity .6s ease, transform .6s ease; }
+  .killer-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .killer-top .killer-name { margin-bottom: 0; }
+  .killer-grid.anim .killer-card { opacity: 0; transform: translateY(16px); }
+  .killer-grid.anim.in .killer-card { opacity: 1; transform: none; }
+  .killer-grid.anim .killer-card:nth-child(2) { transition-delay: .15s; }
+  .killer-name { font-family: var(--display); font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent-light); margin-bottom: 12px; }
+  .killer-pain, .killer-fix { font-family: var(--body); font-size: 16px; line-height: 1.6; }
+  .killer-pain { color: #b0bdc1; margin-bottom: 12px; }
+  .killer-fix { color: #f7f8f8; }
+  .killer-fix strong { font-weight: 700; }
+  .killer-close { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 2.2vw, 22px); color: #f7f8f8; margin-top: 32px; }
+
   /* ── CHALLENGE PROOF ── */
   .proof-grid {
     display: grid;
@@ -394,36 +447,62 @@
     margin: 0 auto;
   }
   @media (max-width: 760px) { .rules-grid { grid-template-columns: 1fr; } }
+  section.rules-dark { background: var(--ink); border-top: none; }
+  section.rules-dark h2 { color: #f7f8f8; }
   .rule-card {
-    background: var(--white);
-    border: 1px solid var(--hairline);
+    background: #2a3c42;
     border-radius: 14px;
     padding: 28px 24px;
     text-align: left;
+    transition: opacity .55s ease, transform .55s ease;
   }
+  .rule-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .rule-icon {
+    width: 56px; height: 56px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 14px;
+    background: rgba(116,187,183,0.14);
+    color: var(--accent-light);
+  }
+  .rule-icon svg { width: 30px; height: 30px; overflow: visible; }
+  .rule-icon svg { transition: transform .6s cubic-bezier(.2,1.4,.4,1), opacity .4s ease; }
+  .rule-icon .ico-fill { fill: currentColor; stroke: none; transition: opacity .4s ease; }
+  .rule-icon .ico-slash { stroke: #f7f8f8; stroke-width: 2.2; stroke-dasharray: 1; stroke-dashoffset: 0; transition: stroke-dashoffset .45s ease; }
+  .rule-icon .ico-spin { transform-origin: 12px 12px; transition: transform .8s ease; }
+  .rule-icon .ico-pulse { transform-origin: 12px 12px; animation: rule-pulse 1.8s ease-in-out infinite; }
+  @keyframes rule-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
   .rule-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: var(--white);
     font-family: var(--display);
     font-weight: 800;
-    font-size: 14px;
-    margin-bottom: 16px;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-light);
   }
   .rule-name {
     font-family: var(--display);
     font-size: 18px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: var(--ink);
+    color: #f7f8f8;
     margin-bottom: 6px;
   }
-  .rule-desc { font-family: var(--body); font-size: 14.5px; color: var(--ink-muted); }
+  .rule-desc { font-family: var(--body); font-size: 14.5px; color: #b0bdc1; }
+  /* animation start states (only once the script is running) */
+  .rules-grid.anim .rule-card { opacity: 0; transform: translateY(18px); }
+  .rules-grid.anim .rule-card.show { opacity: 1; transform: none; }
+  .rules-grid.anim .rule-card:nth-child(2) { transition-delay: .15s; }
+  .rules-grid.anim .rule-card:nth-child(3) { transition-delay: .3s; }
+  .rules-grid.anim .rule-icon svg { transform: scale(.3) rotate(-25deg); opacity: 0; }
+  .rules-grid.anim .rule-icon .ico-slash { stroke-dashoffset: 1; }
+  .rules-grid.anim .rule-icon .ico-spin { transform: rotate(-180deg); }
+  .rules-grid.anim .rule-icon .ico-fill { opacity: 0; }
+  .rules-grid.anim .rule-card.drawn .rule-icon svg { transform: none; opacity: 1; }
+  .rules-grid.anim .rule-card.drawn .rule-icon .ico-slash { stroke-dashoffset: 0; }
+  .rules-grid.anim .rule-card.drawn .rule-icon .ico-spin { transform: none; }
+  .rules-grid.anim .rule-card.drawn .rule-icon .ico-fill { opacity: 1; transition-delay: .5s; }
+  .rules-grid.anim .rule-card.drawn .rule-icon .ico-slash { transition-delay: .9s; }
+  @media (prefers-reduced-motion: reduce) { .rule-icon .ico-pulse { animation: none; } }
 
   .rules-cta { text-align: center; margin-top: 40px; }
   .rules-cta .hero-micro { margin-top: 12px; }
@@ -524,14 +603,16 @@
 
   /* ── VALUE STACK ── */
   .value-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 18px;
     max-width: 960px;
     margin: 0 auto 8px;
   }
-  @media (max-width: 900px) { .value-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 560px) { .value-grid { grid-template-columns: 1fr; } }
+  .value-grid .value-card { flex: 0 1 calc((100% - 36px) / 3); }
+  @media (max-width: 900px) { .value-grid .value-card { flex-basis: calc((100% - 18px) / 2); } }
+  @media (max-width: 560px) { .value-grid .value-card { flex-basis: 100%; } }
   .value-card {
     background: var(--bg-card);
     border: 1px solid var(--hairline);
@@ -720,8 +801,8 @@
   <!-- ── PROOF ── -->
   <section class="alt">
     <div class="container">
-      <h2>We are already winning</h2>
-      <p class="section-sub">Real people getting real results.</p>
+      <h2>The real results of commitment</h2>
+      <p class="section-sub">What our challengers have done with their brands so far.</p>
       <div class="proof-grid">
         <button type="button" class="proof-card" data-story="joe">
           <img src="images/proof-joe.png" alt="Screenshot of Joe's follower growth: 11,152 followers, +569.0% vs June 5.">
@@ -735,7 +816,7 @@
           <img src="images/proof-hailey-card.png" alt="Hailey Ky's Instagram profile, ky.frequency: 14.6K followers.">
           <div class="proof-card-body">
             <div class="proof-card-name">Hailey Ky</div>
-            <div class="proof-card-stat"><strong>300 to 14K+ followers</strong> in 20 days, plus her first product sales</div>
+            <div class="proof-card-stat"><strong>300 to 14K+ followers</strong>, plus $1,000+ in sales from her first product</div>
             <div class="proof-card-more">Read the story →</div>
           </div>
         </button>
@@ -751,7 +832,7 @@
           <img src="images/proof-coco.jpg" alt="Screenshot of Coco's Reel insights showing 169,543 views.">
           <div class="proof-card-body">
             <div class="proof-card-name">Coco</div>
-            <div class="proof-card-stat">Day 1: <strong>169K views</strong> on a 25-second video</div>
+            <div class="proof-card-stat">Day 1 of her second challenge: <strong>169K views</strong> on a 25-second video</div>
             <div class="proof-card-more">Read the story →</div>
           </div>
         </button>
@@ -759,27 +840,47 @@
     </div>
   </section>
 
-  <!-- ── RULES ── -->
+  <!-- ── THE TWO KILLERS ── -->
+  <section class="belong">
+    <div class="container">
+      <h2>Two things kill content dreams</h2>
+      <div class="killer-grid" id="killer-grid">
+        <div class="killer-card">
+          <div class="killer-top"><div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.500 12 19.5 1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.2"/></svg></div><div class="killer-name">Fear of judgment</div></div>
+          <p class="killer-pain">You're scared of what people will think. Scared of being bad at it in front of everybody. So the video stays in your drafts.</p>
+          <p class="killer-fix"><strong>In here, nobody judges you.</strong> You post every day next to people who are doing the exact same thing.</p>
+        </div>
+        <div class="killer-card">
+          <div class="killer-top"><div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.500" width="18" height="17" rx="2.500"/><path d="M8 2.500v4M16 2.500v4M3 10h18"/><path d="M9.700 13.500l4.600 4.600M14.300 13.500l-4.600 4.600" stroke="#f7f8f8" stroke-width="2.100"/></svg></div><div class="killer-name">No consistency</div></div>
+          <p class="killer-pain">You post for a week, then you quit. Nobody notices when you stop, so it's easy to stop.</p>
+          <p class="killer-fix"><strong>In here, people notice.</strong> You have $100 on the line and a group that expects your post every day.</p>
+        </div>
+      </div>
+      <p class="killer-close">The challenge is built to beat both.</p>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
   <section>
     <div class="container">
-      <div class="section-label">Challenge Rules</div>
-      <h2>The difference between where you are now and where you want to be is the action you take today.</h2>
-      <p class="section-sub">Here are the challenge rules:</p>
-      <div class="rules-grid">
-        <div class="rule-card">
-          <div class="rule-num">01</div>
-          <div class="rule-name">You must post 1 video per day</div>
-          <div class="rule-desc">Each day you must upload a video. Static posts do not count.</div>
+      <h2 style="margin-bottom: 36px;">How it works</h2>
+      <div class="flow" id="flow" aria-label="You put in $100, post every day for 30 days, and get $110 back.">
+        <div class="flow-step flow-in">
+          <div class="flow-tag">In</div>
+          <div class="flow-amount">$100</div>
+          <div class="flow-cap">You put in $100</div>
         </div>
-        <div class="rule-card">
-          <div class="rule-num">02</div>
-          <div class="rule-name">1 channel focus</div>
-          <div class="rule-desc">You must post daily on a specific channel of your choice.</div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step flow-mid">
+          <div class="flow-tag"><span id="flow-day">Day 30</span> of 30</div>
+          <div class="flow-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="flow-cap">You post every day, 30 days straight</div>
         </div>
-        <div class="rule-card">
-          <div class="rule-num">03</div>
-          <div class="rule-name">No reposting existing content</div>
-          <div class="rule-desc">Every post must be new and original.</div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step flow-out">
+          <div class="flow-tag">Out</div>
+          <div class="flow-amount">$<span id="flow-out">110</span></div>
+          <div class="flow-cap">We pay you back $110</div>
         </div>
       </div>
       <div class="rules-cta">
@@ -872,44 +973,68 @@
       <div class="value-grid">
         <div class="value-card">
           <div class="value-icon">01</div>
-          <div class="value-name">Weekly Content Call</div>
-          <span class="value-tag">($999 value)</span>
-          <div class="value-desc">Interactive workshop with unlimited Q&amp;A. I'll keep answering until there are none left!</div>
+          <div class="value-name">The $100 Bet: 110% Back When You Finish</div>
+          <div class="value-desc">You've told yourself you'd be consistent before, and fallen off by week two. Put skin in the game. Post every day for 30 days and we pay you back $110.</div>
         </div>
         <div class="value-card">
           <div class="value-icon">02</div>
-          <div class="value-name">AI Content Hub</div>
-          <span class="value-tag">($199 value)</span>
-          <div class="value-desc">A fill-in-the-blanks project that becomes your content command center inside ChatGPT.</div>
+          <div class="value-name">A Community That Wants To See You Win</div>
+          <div class="value-desc">The people in your life don't get why you want this. In here, everyone does. You post every day next to people who want what you want, who cheer your wins, and who never judge you for trying.</div>
         </div>
         <div class="value-card">
           <div class="value-icon">03</div>
-          <div class="value-name">Pull / Drag Audit Custom GPT</div>
-          <span class="value-tag">($99 value)</span>
-          <div class="value-desc">Diagnose exactly why you haven't been able to stick with creating content every time you've tried.</div>
+          <div class="value-name">Weekly Accountability Call</div>
+          <span class="value-tag">($999 value)</span>
+          <div class="value-desc">Nobody's checking on you, so it's easy to skip a day. Every week you check in, and we answer every question until there are none left.</div>
         </div>
         <div class="value-card">
           <div class="value-icon">04</div>
-          <div class="value-name">Setlist Creator</div>
-          <span class="value-tag">($99 value)</span>
-          <div class="value-desc">A template for selecting your core content pillars to create repeatable, winning content.</div>
+          <div class="value-name">30-Day Roadmap</div>
+          <div class="value-desc">A day-by-day posting guide: 30 posts for 30 days. We give you the content templates. Your only job is to fill in the blanks and post.</div>
         </div>
         <div class="value-card">
           <div class="value-icon">05</div>
-          <div class="value-name">30-in-30 Tracker Template</div>
+          <div class="value-name">30-Day Post Tracker</div>
           <span class="value-tag">($99 value)</span>
-          <div class="value-desc">Most leadership programs leave you on your own. We don't. Get ongoing coaching, an engaged community, weekly mastermind calls, and real-time support exactly when you need it most.</div>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">06</div>
-          <div class="value-name">Content Reposting Automations</div>
-          <span class="value-tag">($399 value)</span>
-          <div class="value-desc">Automatically repost your content to the other major platforms.</div>
+          <div class="value-desc">It tracks every post to make sure you're posting. Miss a day, and it notifies the coaches so somebody comes to check on you.</div>
         </div>
       </div>
       <div class="value-total">
         <span class="value-total-label">Total bonus value</span>
-        <span class="value-total-amount"><span class="value-total-strike">$1,894</span>included free</span>
+        <span class="value-total-amount"><span class="value-total-strike">$1,098</span>included free</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RULES ── -->
+  <section class="rules-dark">
+    <div class="container">
+      <h2 style="margin-bottom: 44px;">The challenge rules</h2>
+      <div class="rules-grid" id="rules-grid">
+        <div class="rule-card">
+          <div class="rule-top">
+            <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="5" width="14.5" height="14" rx="2.5"/><polygon points="22.5 7.5 16 12 22.5 16.5 22.5 7.5"/><path class="ico-fill" d="M7 9.4v5.2l4.4-2.6z"/></svg></div>
+            <div class="rule-num">Rule 01</div>
+          </div>
+          <div class="rule-name">You must post 1 video per day</div>
+          <div class="rule-desc">Each day you must upload a video. Static posts do not count.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-top">
+            <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5.6"/><circle class="ico-fill ico-pulse" cx="12" cy="12" r="1.9"/></svg></div>
+            <div class="rule-num">Rule 02</div>
+          </div>
+          <div class="rule-name">1 channel focus</div>
+          <div class="rule-desc">You must post daily on a specific channel of your choice.</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-top">
+            <div class="rule-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="ico-spin"><path d="M17 2l4 4-4 4"/><path d="M3 11V9.5A3.5 3.5 0 0 1 6.5 6H21"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1.5a3.5 3.5 0 0 1-3.5 3.5H3"/></g><path class="ico-slash" pathLength="1" d="M4 3.5l16 17"/></svg></div>
+            <div class="rule-num">Rule 03</div>
+          </div>
+          <div class="rule-name">No reposting existing content</div>
+          <div class="rule-desc">Every post must be new and original.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -925,13 +1050,11 @@
           <span class="price-note">entry · 110% back on completion</span>
         </div>
         <ul class="includes">
-          <li>30-day posting challenge, starts today</li>
-          <li>Weekly Content Call ($999 value)</li>
-          <li>AI Content Hub ($199 value)</li>
-          <li>Pull / Drag Audit Custom GPT ($99 value)</li>
-          <li>Setlist Creator ($99 value)</li>
-          <li>30-in-30 Tracker Template ($99 value)</li>
-          <li>Content Reposting Automations ($399 value)</li>
+          <li>30-Day Posting Challenge, starts today</li>
+          <li>A Community That Wants To See You Win</li>
+          <li>Weekly Accountability Call ($999 value)</li>
+          <li>30-Day Roadmap</li>
+          <li>30-Day Post Tracker ($99 value)</li>
         </ul>
         <a href="https://join.dailypostchallenge.com/checkout/30-day-posting-challenge" class="hero-cta">Commit To My Goals <span class="arrow">&rarr;</span></a>
         <div class="buy-footnote">Fall Challenge closes November 30th.</div>
@@ -942,9 +1065,87 @@
 
 <footer>
   <div class="footer-meta">
-    &copy; 2026 Daily Post Challenge
+    &copy; 2026 Creator Launchpad
   </div>
 </footer>
+
+<script>
+  /* Two killers: the two cards fade and slide into place once, when the section scrolls into view */
+  (function () {
+    var grid = document.getElementById('killer-grid');
+    if (!grid || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    grid.classList.add('anim');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { grid.classList.add('in'); io.disconnect(); } });
+    }, { threshold: 0.25 });
+    io.observe(grid);
+  })();
+
+  /* Challenge rules: cards rise in and their icons draw, each time the section scrolls into view */
+  (function () {
+    var grid = document.getElementById('rules-grid');
+    if (!grid || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cards = grid.querySelectorAll('.rule-card');
+    var timers = [];
+    function reset() {
+      timers.forEach(clearTimeout); timers = [];
+      grid.classList.add('anim');
+      cards.forEach(function (c) { c.classList.remove('show', 'drawn'); });
+    }
+    function play() {
+      reset();
+      timers.push(setTimeout(function () { cards.forEach(function (c) { c.classList.add('show'); }); }, 60));
+      cards.forEach(function (c, i) { timers.push(setTimeout(function () { c.classList.add('drawn'); }, 450 + i * 250)); });
+    }
+    reset();
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) play(); else reset(); });
+    }, { threshold: 0.3 }).observe(grid);
+  })();
+
+  /* How-it-works graphic: plays once each time it scrolls into view */
+  (function () {
+    var flow = document.getElementById('flow');
+    if (!flow || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var steps = flow.querySelectorAll('.flow-step, .flow-arrow');
+    var dots = flow.querySelectorAll('.flow-dots span');
+    var day = document.getElementById('flow-day');
+    var out = document.getElementById('flow-out');
+    var outCard = flow.querySelector('.flow-out');
+    var timers = [];
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function reset() {
+      timers.forEach(clearTimeout); timers = [];
+      flow.classList.add('anim');
+      steps.forEach(function (el) { el.classList.remove('show'); });
+      dots.forEach(function (d) { d.classList.remove('on', 'settled'); });
+      outCard.classList.remove('paid');
+      day.textContent = 'Day 0'; out.textContent = '100';
+    }
+    function play() {
+      reset();
+      at(150, function () { steps[0].classList.add('show'); });
+      at(650, function () { steps[1].classList.add('show'); });
+      at(900, function () { steps[2].classList.add('show'); });
+      dots.forEach(function (d, i) {
+        at(1300 + i * 75, function () { d.classList.add('on'); day.textContent = 'Day ' + (i + 1); });
+        at(1300 + i * 75 + 220, function () { d.classList.add('settled'); });
+      });
+      var end = 1300 + dots.length * 75 + 250;
+      at(end, function () { steps[3].classList.add('show'); });
+      at(end + 300, function () { steps[4].classList.add('show'); });
+      for (var n = 1; n <= 10; n++) (function (n) { at(end + 800 + n * 60, function () { out.textContent = String(100 + n); }); })(n);
+      at(end + 800 + 10 * 60 + 60, function () { outCard.classList.add('paid'); });
+    }
+    reset();
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) play(); else reset(); });
+    }, { threshold: 0.45 }).observe(flow);
+  })();
+</script>
 
 <div class="story-modal" id="story-modal">
   <div class="story-modal-backdrop" data-close></div>
@@ -975,7 +1176,7 @@
         name: 'Hailey Ky',
         role: 'Nomadic Entrepreneur',
         images: ['images/proof-hailey-profile.png', 'images/proof-hailey-239k.png', 'images/proof-hailey.jpg'],
-        text: "Hailey started with about 300 followers on Instagram and videos that averaged 300 to 500 views. Early in the challenge, one of her videos hit 50,000 views, her most popular at the time. Her very next video, posted on day 4, passed 100,000 views and has since climbed to 239,000. In about 20 days she crossed 14,000 followers, launched her first product, and has already made multiple sales. She's officially monetized her brand."
+        text: "Hailey started with about 300 followers on Instagram and videos that averaged 300 to 500 views. She finished her first challenge, then signed up for a second. Four days into that second challenge, her video passed 100,000 views and has since climbed to 239,000. She went from about 300 to over 14,000 followers and launched her first product, with over $1,000 in sales."
       },
       zach: {
         name: 'Zach B',
@@ -987,7 +1188,7 @@
         name: 'Coco',
         role: 'Intentional Remote Work',
         images: ['images/proof-coco.jpg'],
-        text: "Coco's very first post, a 25-second video on day 1, pulled 169,543 views (157,986 of them on Facebook alone), 2K likes, and 366 total interactions before day 2 even started."
+        text: "On day 1 of her second challenge, Coco posted a 25-second video that pulled 169,543 views (157,986 of them on Facebook alone), 2K likes, and 366 total interactions before day 2 even started."
       }
     };
 
